@@ -105,6 +105,7 @@ void lcd_mylang();
   extern int farm_no;
   extern int farm_timer;
   extern int farm_status;
+  extern int8_t SilentModeMenu;
 
 #ifdef SNMM
   extern uint8_t snmm_extruder;
@@ -233,6 +234,7 @@ static void lcd_babystep_z();
 #ifdef SDCARD_SORT_ALPHA
 static void lcd_sort_type_set();
 #endif
+static float count_e(float layer_heigth, float extrusion_width, float extrusion_length);
 void stack_error();
 static void lcd_ping_allert();
 void lcd_printer_connected();
@@ -265,7 +267,7 @@ void display_loading();
 void lcd_service_mode_show_result();
 
 #if !SDSORT_USES_RAM
-void lcd_set_arrows();
+void lcd_set_degree();
 void lcd_set_progress();
 #endif
 

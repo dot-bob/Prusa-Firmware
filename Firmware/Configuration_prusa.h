@@ -6,23 +6,20 @@ GENERAL SETTINGS
 *------------------------------------*/
 
 // Printer revision
-#define FILAMENT_SIZE "1_75mm_MK1"
+#define FILAMENT_SIZE "1_75mm_MK2_MM"
 #define NOZZLE_TYPE "E3Dv6full"
 
 // Developer flag
 #define DEVELOPER
 
 // Printer name
-#define CUSTOM_MENDEL_NAME "Prusa i3 MK1"
+#define CUSTOM_MENDEL_NAME "Prusa i3 MK2"
 
 // Electronics
 #define MOTHERBOARD BOARD_RAMBO_MINI_1_3
 
-// MK1 back port
-#define MK1BP
-
 // Prusa Single extruder multiple material suport
-//#define SNMM
+#define SNMM
 
 // Uncomment the below for the E3D PT100 temperature sensor (with or without PT100 Amplifier)
 //#define E3D_PT100_EXTRUDER_WITH_AMP
@@ -37,9 +34,9 @@ AXIS SETTINGS
 
 // Steps per unit {X,Y,Z,E}
 #ifdef SNMM
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/0.8,140}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,140}
 #else
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/0.8,174.2}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,161.3}
 #endif
 
 
@@ -50,16 +47,16 @@ const bool Z_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 
 // Home position
 #define MANUAL_X_HOME_POS 0
-#define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 0.25
+#define MANUAL_Y_HOME_POS -2.2
+#define MANUAL_Z_HOME_POS 0.15
 
 // Travel limits after homing
-#define X_MAX_POS 214
+#define X_MAX_POS 250
 #define X_MIN_POS 0
-#define Y_MAX_POS 198
-#define Y_MIN_POS 0
-#define Z_MAX_POS 201
-#define Z_MIN_POS 0.23
+#define Y_MAX_POS 210
+#define Y_MIN_POS -2.2
+#define Z_MAX_POS 210
+#define Z_MIN_POS 0.15
 
 // Canceled home position
 #define X_CANCEL_POS 50
@@ -71,16 +68,16 @@ const bool Z_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 #define Z_PAUSE_LIFT 20
 
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
-#define HOMING_FEEDRATE {3000, 3000, 240, 0}  // set the homing speeds (mm/min)
+#define HOMING_FEEDRATE {3000, 3000, 800, 0}  // set the homing speeds (mm/min)
 
-#define DEFAULT_MAX_FEEDRATE          {500, 500, 3, 25}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {9000,9000,30,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_MAX_FEEDRATE          {500, 500, 12, 120}    // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {9000,9000,500,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
-#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+#define DEFAULT_ACCELERATION          1500    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  1500   // X, Y, Z and E max acceleration in mm/s^2 for retracts
 
 
-#define MANUAL_FEEDRATE {3000, 3000, 240, 60}   // set the speeds for manual moves (mm/min)
+#define MANUAL_FEEDRATE {3000, 3000, 1000, 100}   // set the speeds for manual moves (mm/min)
 
 #define Z_AXIS_ALWAYS_ON 1
 
@@ -117,7 +114,7 @@ EXTRUDER SETTINGS
 #endif
 
 // Extrude mintemp
-#define EXTRUDE_MINTEMP 190
+#define EXTRUDE_MINTEMP 130
 
 // Extruder cooling fans
 #define EXTRUDER_0_AUTO_FAN_PIN   8
@@ -199,8 +196,6 @@ MOTOR CURRENT SETTINGS
 #define MOTOR_CURRENT_PWM_RANGE 2000
 #define DEFAULT_PWM_MOTOR_CURRENT  {270, 830, 450} // {XY,Z,E}
 #define DEFAULT_PWM_MOTOR_CURRENT_LOUD  {540, 830, 500} // {XY,Z,E}
-#define Z_SILENT 0
-#define Z_HIGH_POWER 200
 #endif
 
 /*------------------------------------
@@ -399,11 +394,13 @@ THERMISTORS SETTINGS
 #define LONG_PRESS_TIME 1000 //time in ms for button long press 
 #define BUTTON_BLANKING_TIME 200 //time in ms for blanking after button release
 
-#define PAUSE_RETRACT 1 
-
 #define DEFAULT_PID_TEMP 210
 
-#define DEFAULT_RETRACTION 1 //used for PINDA temp calibration
+#ifdef SNMM
+#define DEFAULT_RETRACTION 4 //used for PINDA temp calibration and pause print
+#else
+#define DEFAULT_RETRACTION 1 //used for PINDA temp calibration and pause print
+#endif
 
 #define END_FILE_SECTION 10000 //number of bytes from end of file used for checking if file is complete
 
