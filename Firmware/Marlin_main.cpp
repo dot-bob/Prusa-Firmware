@@ -1952,7 +1952,7 @@ static float probe_pt(float x, float y, float z_before) {
 bool check_commands() {
 	  bool end_command_found = false;
 
-	  if (buflen)
+	  while (buflen)
 	  {
 		  if ((code_seen("M84")) || (code_seen("M 84"))) end_command_found = true;
 		  if (!cmdbuffer_front_already_processed)
@@ -2218,7 +2218,7 @@ bool gcode_M45(bool onlyZ) {
 			lcd_wait_for_cool_down();
 			lcd_show_fullscreen_message_and_wait_P(MSG_PAPER);
 			lcd_display_message_fullscreen_P(MSG_FIND_BED_OFFSET_AND_SKEW_LINE1);
-			lcd_implementation_print_at(0, 2, 1);
+			lcd_implementation_print_at(0, 3, 1);
 			lcd_printPGM(MSG_FIND_BED_OFFSET_AND_SKEW_LINE2);
 		}
 
@@ -4633,8 +4633,6 @@ Sigma_Exit:
 	case 110:   // M110 - reset line pos
 		if (code_seen('N'))
 			gcode_LastN = code_value_long();
-		else
-			gcode_LastN = 0;
 		break;
 #ifdef HOST_KEEPALIVE_FEATURE
 	case 113: // M113 - Get or set Host Keepalive interval

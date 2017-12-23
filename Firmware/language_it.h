@@ -132,7 +132,7 @@
 #define MSG_ERR_COLD_EXTRUDE_STOP           " cold extrusion prevented"
 #define MSG_BABYSTEPPING_X                  "Babystepping X"
 #define MSG_BABYSTEPPING_Y                  "Babystepping Y"
-#define MSG_BABYSTEPPING_Z                  "Adjusting Z"
+#define MSG_BABYSTEPPING_Z                  "Compensazione Z"
 #define MSG_SERIAL_ERROR_MENU_STRUCTURE     "Error in menu structure"
 
 #define MSG_LANGUAGE_NAME		    "Italiano"
@@ -153,11 +153,11 @@
 #define MSG_SELFTEST_ENDSTOP_NOTHIT	    "Finec. fuori por."
 #define MSG_SELFTEST_OK			    "Autotest OK"
 
-#define(length=20) MSG_SELFTEST_FAN					"Prova del ventilator";
-#define(length=20) MSG_SELFTEST_COOLING_FAN			"Vent di stampa ant.?";
-#define(length=20) MSG_SELFTEST_EXTRUDER_FAN        "Vent SX sull'ugello?";
-#define MSG_SELFTEST_FAN_YES				"Gira";
-#define MSG_SELFTEST_FAN_NO					"Non si gira";
+#define MSG_SELFTEST_FAN					"Prova del ventilator"
+#define MSG_SELFTEST_COOLING_FAN			"Vent di stampa ant.?"
+#define MSG_SELFTEST_EXTRUDER_FAN        "Vent SX sull'ugello?"
+#define MSG_SELFTEST_FAN_YES				"Gira"
+#define MSG_SELFTEST_FAN_NO					"Non si gira"
 
 #define MSG_STATS_TOTALFILAMENT		    "Filamento tot:"
 #define MSG_STATS_TOTALPRINTTIME	    "Tempo stampa tot:"
@@ -313,7 +313,7 @@
 #define MSG_WIZARD_Z_CAL					"Adesso avviero una Calibrazione Z."
 #define MSG_WIZARD_WILL_PREHEAT				"Adesso preriscaldero l'ugello per PLA."
 #define MSG_WIZARD_V2_CAL					"Adesso tarero lo stacco fra ugello e superfice del piatto."
-#define MSG_WIZARD_V2_CAL_2					"Adesso iniziero a stampare una linea e tu dovrai abbassare l'ugello gradualmente ruotando la manopola, sino a raggiungere una altezza ottimale. Per favore, dai uno sguardo alla immagine nel capitolo Calibrazione del nostro manuale."
+#define MSG_WIZARD_V2_CAL_2					"Adesso iniziero a stampare una linea e tu dovrai abbassare l'ugello poco per volta ruotando la manopola sino a raggiungere una altezza ottimale. Per favore dai uno sguardo all'immagine del nostro manuale, cap.Calibrazione."
 #define MSG_V2_CALIBRATION					"Cal. primo layer."
 #define MSG_WIZARD_DONE						"Ben fatto. Buona stampa!"
 #define MSG_WIZARD_LOAD_FILAMENT			"Per favore inserisci il filamento di PLA nell'estrusore, poi premi la manopola per caricare."
@@ -326,3 +326,4 @@
 #define MSG_PLEASE_LOAD_PLA					"Per favore prima caricare filamento di PLA."
 #define MSG_FILE_CNT						"Alcuni dei file non potranno essere organizzati. 100 e il n. max. di file che possono essere organizzati."
 #define MSG_WIZARD_HEATING					"Sto preriscaldando l'ugello. Per favore attendi."
+#define MSG_M117_V2_CALIBRATION				"M117 Cal. primo layer."
