@@ -686,8 +686,11 @@ uint8_t xyzcal_xycoords2point(int16_t x, int16_t y)
 
 //MK3
 #if ((MOTHERBOARD == BOARD_EINSY_1_0a))
-const int16_t xyzcal_point_xcoords[4] PROGMEM = {1200, 22000, 22000, 1200};
-const int16_t xyzcal_point_ycoords[4] PROGMEM = {600, 600, 19800, 19800};
+const int16_t xyzcal_point_xcoords[4] PROGMEM = {2400, 44000, 44000, 2400};
+const int16_t xyzcal_point_ycoords[4] PROGMEM = {1200, 1200, 39600, 39600};
+
+//const int16_t xyzcal_point_xcoords[4] PROGMEM = {1200, 22000, 22000, 1200};
+//const int16_t xyzcal_point_ycoords[4] PROGMEM = {600, 600, 19800, 19800};
 #endif //((MOTHERBOARD == BOARD_EINSY_1_0a))
 
 //MK2.5
