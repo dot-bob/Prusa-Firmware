@@ -52,6 +52,11 @@ enum class MmuCmd : uint_least8_t
     E2,
     E3,
     E4,
+    K0,
+    K1,
+    K2,
+    K3,
+    K4,
     R0,
     S3,
     W0,
@@ -92,7 +97,7 @@ extern void manage_response(bool move_axes, bool turn_off_nozzle, uint8_t move =
 
 extern void mmu_load_to_nozzle();
 
-extern void mmu_M600_load_filament(bool automatic);
+extern void mmu_M600_load_filament(bool automatic, float nozzle_temp);
 extern void mmu_M600_wait_and_beep();
 
 extern void extr_mov(float shift, float feed_rate);
@@ -101,16 +106,13 @@ extern int get_ext_nr();
 extern void display_loading();
 extern void extr_adj(int extruder);
 extern void extr_unload();
+//-//
+extern void extr_unload_();
 extern void extr_adj_0();
 extern void extr_adj_1();
 extern void extr_adj_2();
 extern void extr_adj_3();
 extern void extr_adj_4();
-extern void mmu_load_to_nozzle_0();
-extern void mmu_load_to_nozzle_1();
-extern void mmu_load_to_nozzle_2();
-extern void mmu_load_to_nozzle_3();
-extern void mmu_load_to_nozzle_4();
 extern void load_all();
 extern void extr_change_0();
 extern void extr_change_1();
@@ -130,11 +132,9 @@ extern bool mmu_check_version();
 extern void mmu_show_warning();
 extern void lcd_mmu_load_to_nozzle(uint8_t filament_nr);
 extern void mmu_eject_filament(uint8_t filament, bool recover);
-extern void mmu_eject_fil_0();
-extern void mmu_eject_fil_1();
-extern void mmu_eject_fil_2();
-extern void mmu_eject_fil_3();
-extern void mmu_eject_fil_4();
+#ifdef MMU_HAS_CUTTER
+extern void mmu_cut_filament(uint8_t filament_nr);
+#endif //MMU_HAS_CUTTER
 extern void mmu_continue_loading();
 extern void mmu_filament_ramming();
 extern void mmu_wait_for_heater_blocking();
