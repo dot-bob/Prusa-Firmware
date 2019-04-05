@@ -36,7 +36,7 @@
 
 // Steps per unit {X,Y,Z,E}
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,140}
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {200,200,3200/8,560}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,280}
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   {100,100,3200/8,560}
 
 // Endstop inverting
@@ -87,11 +87,11 @@
  */
 #define SHEET_PRINT_ZERO_REF_Y -2.f
 
-#define DEFAULT_MAX_FEEDRATE                {200, 200, 12, 120}      // (mm/sec)   max feedrate (M203)
-#define DEFAULT_MAX_FEEDRATE_SILENT         {100, 100, 12, 120}      // (mm/sec)   max feedrate (M203), silent mode
+#define DEFAULT_MAX_FEEDRATE                {150, 150, 12, 60}      // (mm/sec)   max feedrate (M203)
+#define DEFAULT_MAX_FEEDRATE_SILENT         {100, 100, 12, 60}      // (mm/sec)   max feedrate (M203), silent mode
 
-#define DEFAULT_MAX_ACCELERATION            {1000, 1000, 200, 5000}  // (mm/sec^2) max acceleration (M201)
-#define DEFAULT_MAX_ACCELERATION_SILENT     {960, 960, 200, 5000}    // (mm/sec^2) max acceleration (M201), silent mode
+#define DEFAULT_MAX_ACCELERATION            {800, 800, 200, 3000}  // (mm/sec^2) max acceleration (M201)
+#define DEFAULT_MAX_ACCELERATION_SILENT     {800, 800, 200, 3000}    // (mm/sec^2) max acceleration (M201), silent mode
 
 
 #define DEFAULT_ACCELERATION          1250   // X, Y, Z and E max acceleration in mm/s^2 for printing moves (M204S)
@@ -104,8 +104,8 @@
 #define SILENT_MAX_FEEDRATE_XY   100  // max feedrate in mm/s
 
 //Normal mode limits
-#define NORMAL_MAX_ACCEL_XY     2500ul  // max acceleration in normal mode in mm/s^2
-#define NORMAL_MAX_FEEDRATE_XY   200  // max feedrate in mm/s
+#define NORMAL_MAX_ACCEL_XY     1000ul  // max acceleration in normal mode in mm/s^2
+#define NORMAL_MAX_FEEDRATE_XY   150  // max feedrate in mm/s
 
 //number of bytes from end of the file to start check
 #define END_FILE_SECTION 20000
@@ -200,9 +200,9 @@
 
 #define TMC2130_FCLK 12000000       // fclk = 12MHz
 
-#define TMC2130_USTEPS_XY   16        // microstep resolution for XY axes
+#define TMC2130_USTEPS_XY   8        // microstep resolution for XY axes
 #define TMC2130_USTEPS_Z    16        // microstep resolution for Z axis
-#define TMC2130_USTEPS_E    32        // microstep resolution for E axis
+#define TMC2130_USTEPS_E    16        // microstep resolution for E axis
 #define TMC2130_INTPOL_XY   1         // extrapolate 256 for XY axes
 #define TMC2130_INTPOL_Z    1         // extrapolate 256 for Z axis
 #define TMC2130_INTPOL_E    1         // extrapolate 256 for E axis
@@ -256,8 +256,8 @@
 #define TMC2130_SG_THRS_E       3     // stallguard sensitivity for E axis
 
 //new settings is possible for vsense = 1, running current value > 31 set vsense to zero and shift both currents by 1 bit right (Z axis only)
-#define TMC2130_CURRENTS_H {35, 40, 35, 30}  // default holding currents for all axes
-#define TMC2130_CURRENTS_R {35, 40, 35, 30}  // default running currents for all axes
+#define TMC2130_CURRENTS_H {35, 40, 35, 35}  // default holding currents for all axes
+#define TMC2130_CURRENTS_R {35, 40, 35, 35}  // default running currents for all axes
 #define TMC2130_UNLOAD_CURRENT_R 12			 // lowe current for M600 to protect filament sensor 
 
 #define TMC2130_STEALTH_Z
