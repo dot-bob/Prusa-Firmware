@@ -48,7 +48,7 @@
 #define INVERT_X_DIR 1    // for Mendel set to 0, for Orca set to 1
 #define INVERT_Y_DIR 0    // for Mendel set to 1, for Orca set to 0
 #define INVERT_Z_DIR 1     // for Mendel set to 0, for Orca set to 1
-#define INVERT_E0_DIR 0   // for direct drive extruder v9 set to 1, for geared extruder set to 0
+#define INVERT_E0_DIR 1   // for direct drive extruder v9 set to 1, for geared extruder set to 0
 #define INVERT_E1_DIR 0    // for direct drive extruder v9 set to 1, for geared extruder set to 0
 #define INVERT_E2_DIR 0   // for direct drive extruder v9 set to 1, for geared extruder set to 0
 
@@ -200,9 +200,9 @@
 
 #define TMC2130_FCLK 12000000       // fclk = 12MHz
 
-#define TMC2130_USTEPS_XY   8        // microstep resolution for XY axes
+#define TMC2130_USTEPS_XY   16        // microstep resolution for XY axes
 #define TMC2130_USTEPS_Z    16        // microstep resolution for Z axis
-#define TMC2130_USTEPS_E    16        // microstep resolution for E axis
+#define TMC2130_USTEPS_E    32        // microstep resolution for E axis
 #define TMC2130_INTPOL_XY   1         // extrapolate 256 for XY axes
 #define TMC2130_INTPOL_Z    1         // extrapolate 256 for Z axis
 #define TMC2130_INTPOL_E    1         // extrapolate 256 for E axis
@@ -256,8 +256,8 @@
 #define TMC2130_SG_THRS_E       3     // stallguard sensitivity for E axis
 
 //new settings is possible for vsense = 1, running current value > 31 set vsense to zero and shift both currents by 1 bit right (Z axis only)
-#define TMC2130_CURRENTS_H {35, 40, 35, 35}  // default holding currents for all axes
-#define TMC2130_CURRENTS_R {35, 40, 35, 35}  // default running currents for all axes
+#define TMC2130_CURRENTS_H {16, 20, 35, 30}  // default holding currents for all axes
+#define TMC2130_CURRENTS_R {16, 20, 35, 30}  // default running currents for all axes
 #define TMC2130_UNLOAD_CURRENT_R 12			 // lowe current for M600 to protect filament sensor 
 
 #define TMC2130_STEALTH_Z
@@ -400,10 +400,10 @@
 #define MBL_Z_STEP 0.01
 
 // Mesh definitions
-#define MESH_MIN_X 35
-#define MESH_MAX_X 238
+#define MESH_MIN_X 24
+#define MESH_MAX_X 228
 #define MESH_MIN_Y 6
-#define MESH_MAX_Y 202
+#define MESH_MAX_Y 210
 
 // Mesh upsample definition
 #define MESH_NUM_X_POINTS 7
@@ -625,7 +625,8 @@
 
 #define MMU_REQUIRED_FW_BUILDNR 83
 #define MMU_HWRESET
-//#define MMU_DEBUG //print communication between MMU2 and printer on serial
+#define MMU_DEBUG //print communication between MMU2 and printer on serial
+//#define MMU_HAS_CUTTER
 #define MMU_IDLER_SENSOR_ATTEMPTS_NR 21 //max. number of attempts to load filament if first load failed; value for max bowden length and case when loading fails right at the beginning
 
 #endif //__CONFIGURATION_PRUSA_H
