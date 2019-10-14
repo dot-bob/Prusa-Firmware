@@ -7,9 +7,6 @@
 #include "menu.h"
 #include "mesh_bed_calibration.h"
 
-extern int lcd_puts_P(const char* str);
-extern int lcd_printf_P(const char* format, ...);
-
 extern void menu_lcd_longpress_func(void);
 extern void menu_lcd_charsetup_func(void);
 extern void menu_lcd_lcdupdate_func(void);
@@ -56,6 +53,11 @@ void lcd_menu_statistics();
 
 void lcd_menu_extruder_info();                    // NOT static due to using inside "Marlin_main" module ("manage_inactivity()")
 void lcd_menu_show_sensors_state();               // NOT static due to using inside "Marlin_main" module ("manage_inactivity()")
+#ifdef TMC2130
+bool lcd_crash_detect_enabled();
+void lcd_crash_detect_enable();
+void lcd_crash_detect_disable();
+#endif
 
 extern const char* lcd_display_message_fullscreen_P(const char *msg, uint8_t &nlines);
 extern const char* lcd_display_message_fullscreen_P(const char *msg);
@@ -143,6 +145,10 @@ void lcd_ignore_click(bool b=true);
 void lcd_commands();
 
 
+extern bool bSettings;                            // flag (i.e. 'fake parameter') for 'lcd_hw_setup_menu()' function
+void lcd_hw_setup_menu(void);                     // NOT static due to using inside "util" module ("nozzle_diameter_check()")
+
+
 void change_extr(int extr);
 
 #ifdef SNMM
@@ -161,6 +167,8 @@ enum class FilamentAction : uint_least8_t
     MmuUnLoad,
     MmuEject,
     MmuCut,
+    Preheat,
+    Lay1Cal,
 };
 
 extern FilamentAction eFilamentAction;
@@ -169,7 +177,7 @@ extern bool bFilamentPreheatState;
 extern bool bFilamentAction;
 void mFilamentItem(uint16_t nTemp,uint16_t nTempBed);
 void mFilamentItemForce();
-void mFilamentMenu();
+void lcd_generic_preheat_menu();
 void unload_filament();
 
 void stack_error();
@@ -189,7 +197,9 @@ void lcd_wait_for_cool_down();
 void lcd_extr_cal_reset();
 
 void lcd_temp_cal_show_result(bool result);
+#ifdef PINDA_THERMISTOR
 bool lcd_wait_for_pinda(float temp);
+#endif //PINDA_THERMISTOR
 
 
 void bowden_menu();
@@ -215,18 +225,19 @@ bool lcd_autoDepleteEnabled();
 //! @brief Wizard state
 enum class WizState : uint8_t
 {
-    Run,            //!< run wizard? Entry point.
+    Run,            //!< run wizard? Main entry point.
     Restore,        //!< restore calibration status
-    Selftest,
+    Selftest,       //!< self test
     Xyz,            //!< xyz calibration
     Z,              //!< z calibration
-    IsFil,          //!< Is filament loaded? Entry point for 1st layer calibration
+    IsFil,          //!< Is filament loaded? First step of 1st layer calibration
     PreheatPla,     //!< waiting for preheat nozzle for PLA
     Preheat,        //!< Preheat for any material
-    Unload,         //!< Unload filament
-    LoadFil,        //!< Load filament
+    LoadFilCold,    //!< Load filament for MMU
+    LoadFilHot,     //!< Load filament without MMU
     IsPla,          //!< Is PLA filament?
-    Lay1Cal,        //!< First layer calibration
+    Lay1CalCold,    //!< First layer calibration, temperature not selected yet
+    Lay1CalHot,     //!< First layer calibration, temperature already selected
     RepeatLay1Cal,  //!< Repeat first layer calibration?
     Finish,         //!< Deactivate wizard
 };
